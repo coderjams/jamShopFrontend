@@ -10,9 +10,8 @@ import { BannerComponent } from '@angular-monorepo/ui'
 @Component({
   standalone: true,
   imports: [NxWelcomeComponent, RouterModule, HomePageComponent, ProductListComponent, FooterComponent, HeaderComponent, BannerComponent],
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
+  selector: 'jamshop-root',
+  templateUrl: './app.component.html'
 })
 export class AppComponent {
   title = 'jam-shop';
