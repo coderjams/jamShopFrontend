@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'app-footer',
+  selector: 'jamshop-footer',
   standalone: true,
-  imports: [CommonModule],
-  templateUrl: './footer.component.html',
-  styleUrl: './footer.component.css'
+  imports: [],
+  templateUrl: './footer.component.html'
 })
-export class FooterComponent {}
+export class FooterComponent {
+
+}
