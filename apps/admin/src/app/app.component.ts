@@ -5,7 +5,7 @@ import { NxWelcomeComponent } from './nx-welcome.component';
 @Component({
   standalone: true,
   imports: [NxWelcomeComponent, RouterModule],
-  selector: 'app-root',
+  selector: 'admin-root',
   templateUrl: './app.component.html'
 })
 export class AppComponent {
