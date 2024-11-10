@@ -1,12 +1,12 @@
 <p-toast />
 <div class="admin-page">
-  <p-card header="Add Categories" subheader="Add or edit Categories">
+  <p-card [header]="editMode() ? 'Edit Category' : 'Add Category'" [subheader]="editMode() ? 'Edit a Category' : 'Add a new Category'">
     <div class="p-grid">
       <div class="p-col-12">
         <p-toolbar styleClass="mb-5">
           <div class="p-toolbar-group-left"></div>
           <div class="p-toolbar-group-right">
-            <p-button class="mr-2" severity="primary" icon="pi pi-plus" label="Create" (click)="onSubmit()" />
+            <p-button class="mr-2" severity="primary" icon="pi pi-plus" [label]="editMode() ? 'Update' : 'Create'" (click)="onSubmit()" />
             <p-button severity="secondary" icon="pi pi-arrow-circle-left" label="Cancel" />
           </div>
         </p-toolbar>
