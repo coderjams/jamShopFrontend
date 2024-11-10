@@ -1,14 +1,12 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CardModule } from 'primeng/card';
 import { ToolbarModule } from 'primeng/toolbar';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { CategoriesService, Category } from '@angular-monorepo/products';
 import { CategoriesFormComponent } from '../categories-form/categories-form.component';
-import { RouterLink, RouterOutlet } from '@angular/router';
+import { Router, RouterLink, RouterOutlet } from '@angular/router';
 import { ToastModule } from 'primeng/toast';
-import { Location } from '@angular/common';
-import { lastValueFrom, timer } from 'rxjs';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
@@ -29,33 +27,13 @@ export class CategoriesListComponent implements OnInit {
   private categoriesService = inject(CategoriesService)
   private messageService = inject(MessageService);
   private confirmationService = inject(ConfirmationService);
-  private location = inject(Location);
+  private router = inject(Router);
 
   ngOnInit() {
     this._getCategories();
   }
 
-  //   confirm1(event: Event) {
-  //     this.confirmationService.confirm({
-  //         target: event.target as EventTarget,
-  //         message: 'Are you sure that you want to proceed?',
-  //         header: 'Confirmation',
-  //         icon: 'pi pi-exclamation-triangle',
-  //         acceptIcon:"none",
-  //         rejectIcon:"none",
-  //         rejectButtonStyleClass:"p-button-text",
-  //         accept: () => {
-  //             this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'You have accepted' });
-  //         },
-  //         reject: () => {
-  //             this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'You have rejected', life: 3000 });
-  //         }
-  //     });
-  // }
-
-
   deleteCategory(categoryId: string) {
-
     this.confirmationService.confirm({
       target: event.target as EventTarget,
       message: 'Are you sure that you want to delete this category?',
@@ -71,11 +49,7 @@ export class CategoriesListComponent implements OnInit {
               severity: 'success', summary: 'Success', detail: 'Category is deleted',
             }),
             complete: () => {
-              this._getCategories()
-              // lastValueFrom(timer(2000)).then(() => {
-              //   this.location.back();
-              // }
-              // );
+              this._getCategories();
             },
             error: () => this.messageService.add({
               severity: 'error', summary: 'Error', detail: 'Category was not deleted'
@@ -85,6 +59,10 @@ export class CategoriesListComponent implements OnInit {
       reject: () => { '' }
     });
   };
+
+  updateCategory(categoryid: string) {
+    this.router.navigateByUrl(`category/form/${categoryid}`)
+  }
 
   private _getCategories() {
     this.categoriesService.getCategories().subscribe(categories => {
